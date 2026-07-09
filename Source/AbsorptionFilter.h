@@ -1,28 +1,50 @@
 #pragma once
 #include <JuceHeader.h>
 #include "AirModel.h"
+#include <vector>
 
-class AbsorptionFilter {
+class AbsorptionFilter : public juce::Thread{
 
 public:
-	AbsorptionFilter();
-	~AbsorptionFilter();
+	AbsorptionFilter(int kernelSize);
+	~AbsorptionFilter() override;
+
 	void prepare(const juce::dsp::ProcessSpec& spec);
 	void process(const juce::dsp::ProcessContextReplacing<float>& context);
-	void setDistance(float newDistance);
-	void setTemperature(float temp); //in C
-	void setHumidity(float hum);     //realative
-	void setPressure(float pres);    //in atm
+
+	void setParams(float temp, float hum, float pres, float dist); // in celcius, relative humidity, atm, meters
+
+	void calcMagnitudeResponse();
+	void buildImpulseResponse();
+
+	void run() override;
+
 
 private:
-	AirModel airModel;
-	float sampleRate;
+	int kernelSize;
+
+	std::atomic<float> pendingTemp{20.0f};
+	std::atomic<float> pendingHum{ 50.0f };
+	std::atomic<float> pendingDist{ 1.0f };
+	std::atomic<float> pendingPres{ 1.0f };
+
 	float distance;
-	
 
-	juce::AudioBuffer<float> buildImpulseResponse();
+	AirModel airModel;
+
+	std::vector<float> magnitudeResponse;
+
+
+	juce::AudioBuffer<float> impulseResponse;
+	juce::dsp::FFT fft;
 	juce::dsp::Convolution convolution;
+
+	std::vector<juce::dsp::Complex<float>> complexMag;
+	std::vector<juce::dsp::Complex<float>> output;
 	
 
+	std::atomic<float> sampleRate{ 0.0f };
+	std::atomic<bool>  forceRebuild{ false }; //force rebuild is for sample rate changes 
+	
 	
 };

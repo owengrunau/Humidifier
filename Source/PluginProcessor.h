@@ -61,10 +61,12 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AtmosphericAbsorptionAudioProcessor)
     static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
 
-    std::atomic<float>* temperatureLocal = nullptr;
-    std::atomic<float>* humidityLocal = nullptr;
-    std::atomic<float>* distanceLocal = nullptr;
-    std::atomic<float>* pressureLocal = nullptr;
+    std::atomic<float>* temperatureParam = nullptr;
+    std::atomic<float>* humidityParam = nullptr;
+    std::atomic<float>* distanceParam = nullptr;
+    std::atomic<float>* pressureParam = nullptr;
+
+    
 
 	AbsorptionFilter absorptionFilter;
 };

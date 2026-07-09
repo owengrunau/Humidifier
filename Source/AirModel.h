@@ -2,12 +2,11 @@
 #include <JuceHeader.h>
 
 class AirModel {
-
 public:
 	float getAttenuationCoeffAtFreqDb(float freq);
 
 	void setTemperature(float temp); //in C
-	void setHumidity(float hum);     //realative
+	void setHumidity(float hum);     //relative
 	void setPressure(float pres);    //in atm
 	
 	void calcFrO();
@@ -23,9 +22,6 @@ private:
 	float FrO;
 	float FrN;
 	
-
-
-
 	float getAbsHumidity(float relH);
 	float getTempK();
 	
