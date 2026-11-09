@@ -165,8 +165,8 @@ bool AtmosphericAbsorptionAudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* AtmosphericAbsorptionAudioProcessor::createEditor()
 {
-    //return new AtmosphericAbsorptionAudioProcessorEditor (*this);
-	return new juce::GenericAudioProcessorEditor(*this);
+    //return new juce::GenericAudioProcessorEditor(*this);
+    return new AtmosphericAbsorptionAudioProcessorEditor(*this);
 }
 
 //==============================================================================

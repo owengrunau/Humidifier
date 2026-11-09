@@ -19,9 +19,12 @@ public:
 
 	void run() override;
 
+	int getKernelSize();
+
 
 private:
 	int kernelSize;
+	std::vector<float> window;
 
 	std::atomic<float> pendingTemp{20.0f};
 	std::atomic<float> pendingHum{ 50.0f };
