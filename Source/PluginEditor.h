@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "HumidifierLookAndFeel.h"
 
 //==============================================================================
 /**
@@ -28,6 +29,13 @@ private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     AtmosphericAbsorptionAudioProcessor& audioProcessor;
+
+    HumidifierLookAndFeel lookAndFeel;
+
+    juce::Slider temperatureSlider, humiditySlider, distanceSlider, pressureSlider;
+
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> temperatureSliderAttachment, humiditySliderAttachment, distanceSliderAttachment, pressureSliderAttachment;
+  
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AtmosphericAbsorptionAudioProcessorEditor)
 };
