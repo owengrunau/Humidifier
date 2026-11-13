@@ -8,5 +8,6 @@ https://en.wikibooks.org/wiki/Engineering_Acoustics/Outdoor_Sound_Propagation#At
 Creating a minimum phase response from a magnitude response:
 https://www.dsprelated.com/freebooks/filters/Matlab_listing_mps_m_test.html
 
+
 TODO:
-GUI
+Spectral amplitude response graphic, text scrolling decoration

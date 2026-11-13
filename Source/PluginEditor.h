@@ -1,4 +1,4 @@
-/*
+    /*
   ==============================================================================
 
     This file contains the basic framework code for a JUCE plugin editor.
@@ -11,6 +11,7 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "HumidifierLookAndFeel.h"
+#include "BinaryData.h"
 
 //==============================================================================
 /**
@@ -31,6 +32,8 @@ private:
     AtmosphericAbsorptionAudioProcessor& audioProcessor;
 
     HumidifierLookAndFeel lookAndFeel;
+
+    juce::Image background;
 
     juce::Slider temperatureSlider, humiditySlider, distanceSlider, pressureSlider;
 
